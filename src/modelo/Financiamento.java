@@ -7,29 +7,25 @@ public class Financiamento {
     private int prazoFinanciamento;
     private double taxaJurosAnual;
 
-    public  Financiamento(double valorImovel, int prazoFinanciamento, double taxaJurosAnual){
-        this.valorImovel = valorImovel;
-        this.prazoFinanciamento = prazoFinanciamento;
-        this.taxaJurosAnual = taxaJurosAnual;
-    }
-
     public double PagamentoMensal(){
        return (this.valorImovel / this.prazoFinanciamento) * (1 + (this.taxaJurosAnual / 12));
     }
 
     public double TotalPagamento(){
-        double value;
-        value = PagamentoMensal();
-        return value * this.prazoFinanciamento;
+        return PagamentoMensal() * this.prazoFinanciamento;
     }
 
     public void ConsultaFinanciamento(){
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        String valorformatado = df.format(getValorImovel());
-
-        System.out.println("Valor do imóvel: R$ " + valorformatado);
+        String valorImovel = FormatoMonetario(getValorImovel());
+        System.out.println("Valor do imóvel: R$ " + valorImovel);
         System.out.println("Prazo do financiamento: " + getPrazoFinanciamento() + " meses.");
         System.out.println("Taxa de juros: " + getTaxaJurosAnual() + "%");
+        System.out.print("\n");
+    }
+
+    public String FormatoMonetario(double valor){
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return df.format(valor);
     }
 
     public double getValorImovel(){
@@ -42,5 +38,17 @@ public class Financiamento {
 
     public double getTaxaJurosAnual(){
         return this.taxaJurosAnual;
+    }
+
+    public void setValorImovel(double val){
+       this.valorImovel = val;
+    }
+
+    public void setPrazoFinanciamento(int val){
+        this.prazoFinanciamento = val;
+    }
+
+    public void setTaxaJurosAnual(double val){
+       this.taxaJurosAnual = val;
     }
 }

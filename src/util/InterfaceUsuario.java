@@ -24,7 +24,6 @@ public class InterfaceUsuario {
             }
         } while (valor < 10000);
         return valor;
-
     }
 
     public int PrazoDeFinanciamento(){
@@ -47,12 +46,12 @@ public class InterfaceUsuario {
             if (taxa <= 0 || taxa > 100){
                 System.out.println("Taxa de juros inválida. Por favor, digite uma taxa entre 0% e 100%.");
             }
-        }while (taxa <= 0 || taxa > 100);
+        } while (taxa <= 0 || taxa > 100);
         return taxa;
     }
 
-    public void ImprimeMensalidade(double valor){
-        String valorFormatado = decimalFormat.format(valor);
-        System.out.println("O valor do financiamento é R$ " + valorFormatado);
+    public void ImprimeFinanciamento(double valor){
+        System.out.println("\n");
+        System.out.println("O valor do financiamento é R$ " + decimalFormat.format(valor));
     }
 }
