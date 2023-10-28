@@ -25,11 +25,11 @@ public class Financiamento {
 
     public void ConsultaFinanciamento(){
         DecimalFormat df = new DecimalFormat("#,##0.00");
-        String valorformatado = df.format(this.valorImovel);
+        String valorformatado = df.format(getValorImovel());
 
         System.out.println("Valor do imóvel: R$ " + valorformatado);
-        System.out.println("Prazo do financiamento: " + this.prazoFinanciamento + " meses.");
-        System.out.println("Taxa de juros: " + this.taxaJurosAnual + "%");
+        System.out.println("Prazo do financiamento: " + getPrazoFinanciamento() + " meses.");
+        System.out.println("Taxa de juros: " + getTaxaJurosAnual() + "%");
     }
 
     public double getValorImovel(){
