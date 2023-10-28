@@ -1,4 +1,7 @@
-import java.util.Scanner;
+package main;
+
+import modelo.Financiamento;
+import util.InterfaceUsuario;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,5 +13,7 @@ public class Main {
         Financiamento financiamento = new Financiamento(valorImovel, prazoFinanciamento, taxaJuros);
         double valorMensal = financiamento.TotalPagamento();
         interfaceUser.ImprimeMensalidade(valorMensal);
+
+        financiamento.ConsultaFinanciamento();
     }
 }
