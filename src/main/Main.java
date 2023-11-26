@@ -1,6 +1,9 @@
 package main;
 
+import modelo.Apartamento;
+import modelo.Casa;
 import modelo.Financiamento;
+import modelo.Terreno;
 import util.InterfaceUsuario;
 import java.util.ArrayList;
 
@@ -10,39 +13,25 @@ public class Main {
         ArrayList<Financiamento> listaDeFinanciamentos = new ArrayList<>();
 
         InterfaceUsuario interfaceUser = new InterfaceUsuario();
-        Financiamento financiamento1 = new Financiamento();
-        Financiamento casaPraia = new Financiamento();
-        Financiamento casaCampo = new Financiamento();
-        Financiamento casaCidade = new Financiamento();
-        Financiamento apartamento = new Financiamento();
 
-        financiamento1.setValorImovel(interfaceUser.ValorDoImovel());
-        financiamento1.setPrazoFinanciamento(interfaceUser.PrazoDeFinanciamento());
-        financiamento1.setTaxaJurosAnual(interfaceUser.TaxaDeJuros());
-        interfaceUser.ImprimeFinanciamento(financiamento1.TotalPagamento());
-        financiamento1.ConsultaFinanciamento();
+        Casa casa = new Casa(interfaceUser.ValorDoImovel(), interfaceUser.PrazoDeFinanciamento(), interfaceUser.TaxaDeJuros(), 80.00);
 
-        casaPraia.setValorImovel(150000.00);
-        casaPraia.setPrazoFinanciamento(64);
-        casaPraia.setTaxaJurosAnual(13.9);
+        Financiamento casa2 = new Casa(500000.00, 10, 10, 80.00);
+        Financiamento apartamento1 = new Apartamento(500000.00, 10, 10);
+        Financiamento apartamento2 = new Apartamento(500000.00, 10, 10);
+        //Financiamento terreno1 = new Terreno(3500000.00, 128, 13.9);
 
-        casaCampo.setValorImovel(100000.00);
-        casaCampo.setPrazoFinanciamento(48);
-        casaCampo.setTaxaJurosAnual(13.9);
+        interfaceUser.ImprimeFinanciamento(casa.TotalPagamento());
+        interfaceUser.ImprimeFinanciamento(((Apartamento) apartamento1).TotalPagamento());
+        casa.ConsultaFinanciamento();
 
-        casaCidade.setValorImovel(3500000.00);
-        casaCidade.setPrazoFinanciamento(128);
-        casaCidade.setTaxaJurosAnual(13.9);
 
-        apartamento.setValorImovel(300000.00);
-        apartamento.setPrazoFinanciamento(128);
-        apartamento.setTaxaJurosAnual(13.9);
+        listaDeFinanciamentos.add(casa);
+        //listaDeFinanciamentos.add(casa2);
+        listaDeFinanciamentos.add(apartamento1);
+        //listaDeFinanciamentos.add(apartamento2);
+        //listaDeFinanciamentos.add(terreno1);
 
-        listaDeFinanciamentos.add(financiamento1);
-        listaDeFinanciamentos.add(casaPraia);
-        listaDeFinanciamentos.add(casaCampo);
-        listaDeFinanciamentos.add(casaCidade);
-        listaDeFinanciamentos.add(apartamento);
 
         double totalImoveis = 0;
         double totalFinanciamentos = 0;
@@ -50,10 +39,10 @@ public class Main {
         for (int i = 0; i < listaDeFinanciamentos.size(); i++) {
             int f = i + 1;
             totalImoveis += listaDeFinanciamentos.get(i).getValorImovel();
-            totalFinanciamentos += listaDeFinanciamentos.get(i).TotalPagamento();
+            totalFinanciamentos += listaDeFinanciamentos.get(i).TotalFinanciamento();
 
-            System.out.println("Financiamento " + f + " – valor do imóvel: R$ " + financiamento1.FormatoMonetario(listaDeFinanciamentos.get(i).getValorImovel()) + ", valor do financiamento: R$ " + financiamento1.FormatoMonetario(listaDeFinanciamentos.get(i).TotalPagamento()));
+            System.out.println("Financiamento " + f + " – valor do imóvel: R$ " + casa.FormatoMonetario(listaDeFinanciamentos.get(i).getValorImovel()) + ", valor do financiamento: R$ " + casa.FormatoMonetario(listaDeFinanciamentos.get(i).TotalFinanciamento()));
         }
-        System.out.println("Total de todos os imóveis: R$ " + financiamento1.FormatoMonetario(totalImoveis) + ", total de todos os financiamentos: R$" + financiamento1.FormatoMonetario(totalFinanciamentos) + ".\n");
+       System.out.println("Total de todos os imóveis: R$ " + casa.FormatoMonetario(totalImoveis) + ", total de todos os financiamentos: R$" + casa.FormatoMonetario(totalFinanciamentos) + ".\n");
     }
 }
